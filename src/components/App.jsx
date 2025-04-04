@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CharacterList from "./CharacterList";
+import Filters from "./Filters";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [searchName, setSearchName] = useState("");
   useEffect(() => {
     //1. instructions:
     fetch("https://rickandmortyapi.com/api/character")
@@ -20,16 +22,28 @@ function App() {
             species: character.species,
           };
         });
-        console.log(usersData);
+        //console.log(usersData);
         setCharacters(usersData);
       });
   }, []); // 2. Empty array -> to run once.
+  //Function -> change on filter
+  const handleFilterChange = (searchName) => {
+    setSearchName(searchName);
+  };
+  //Filter -> characters by name
+  const filteredCharacters = characters.filter((character) => {
+    return character.name.toLowerCase().includes(searchName.toLowerCase());
+  });
   return (
     <>
       <header>
         <h1>Rick and Morty</h1>
         <main>
-          <CharacterList characters={characters} />
+          <Filters
+            searchName={searchName}
+            onFilterChange={handleFilterChange}
+          />
+          <CharacterList characters={filteredCharacters} />
         </main>
       </header>
     </>
