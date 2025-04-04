@@ -1,10 +1,19 @@
 import CharacterDetail from "./CharacterDetail";
 
-function CharacterList() {
+function CharacterList({ characters }) {
   return (
     <section>
-      <ul>UserItem</ul>
-      <CharacterDetail />
+      <ul>
+        {characters.map((character) => {
+          return (
+            <li key={character.id}>
+              <img src={character.image} alt={character.name} />
+              <h3>{character.name}</h3>
+              <p>{character.species}</p>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
