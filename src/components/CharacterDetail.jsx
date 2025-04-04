@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import "../scss/components/CharacterDetail.scss";
 
 function CharacterDetail() {
-  return <div>Character Detail</div>;
+  const { id } = useParams();
+  console.log(id);
 }
 
 export default CharacterDetail;

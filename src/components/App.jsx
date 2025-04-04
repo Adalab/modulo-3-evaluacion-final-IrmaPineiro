@@ -44,6 +44,10 @@ function App() {
         <Filters searchName={searchName} onFilterChange={handleFilterChange} />
         <Routes>
           <Route
+            path="/"
+            element={<CharacterList characters={filteredCharacters} />}
+          />
+          <Route
             path="/characters"
             element={<CharacterList characters={filteredCharacters} />}
           />
