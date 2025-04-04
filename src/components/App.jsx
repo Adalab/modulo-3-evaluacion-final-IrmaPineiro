@@ -1,9 +1,10 @@
 import "../scss/App.scss";
 import PropTypes from "prop-types";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CharacterList from "./CharacterList";
 import Filters from "./Filters";
+import CharacterDetail from "./CharacterDetail";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -38,14 +39,20 @@ function App() {
     <>
       <header>
         <h1>Rick and Morty</h1>
-        <main>
-          <Filters
-            searchName={searchName}
-            onFilterChange={handleFilterChange}
-          />
-          <CharacterList characters={filteredCharacters} />
-        </main>
       </header>
+      <main>
+        <Filters searchName={searchName} onFilterChange={handleFilterChange} />
+        <Routes>
+          <Route
+            path="/characters"
+            element={<CharacterList characters={filteredCharacters} />}
+          />
+          <Route
+            path="/detail/:id"
+            element={<CharacterDetail characters={characters} />}
+          />
+        </Routes>
+      </main>
     </>
   );
 }

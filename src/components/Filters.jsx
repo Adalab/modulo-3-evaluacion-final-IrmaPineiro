@@ -24,4 +24,9 @@ function Filters({ searchName, onFilterChange }) {
   );
 }
 
+Filters.propTypes = {
+  searchName: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+};
+
 export default Filters;

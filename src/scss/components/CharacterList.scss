@@ -1,0 +1,17 @@
+.character-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.characters {
+    background-color: aquamarine;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+
+}
