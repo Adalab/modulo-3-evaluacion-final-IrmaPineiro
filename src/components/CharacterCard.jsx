@@ -9,7 +9,9 @@ function CharacterCard({ character }) {
       <Link to={`/detail/${character.id}`}>
         <img src={character.image} alt={character.name} />
         <h3>{character.name}</h3>
-        <p>{character.species}</p>
+        <p>
+          {character.species} {character.species === "Human" ? "🧍‍♂️" : "👽"}
+        </p>
       </Link>
     </li>
   );

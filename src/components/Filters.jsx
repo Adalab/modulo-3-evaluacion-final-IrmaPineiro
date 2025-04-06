@@ -39,8 +39,7 @@ function Filters({
         onKeyDown={hanldeChangeInputEnter}
         value={searchName}
       />
-
-      <input
+      <select
         className="form-input-specie"
         type="text"
         placeholder="Buscar por especie"
@@ -48,7 +47,11 @@ function Filters({
         onKeyDown={hanldeChangeInputEnter}
         value={searchSpecie}
         id="inputSpecie"
-      />
+      >
+        <option value="">Todas las especies</option>
+        <option value="Human">Humano</option>
+        <option value="Alien">Alien</option>
+      </select>
     </form>
   );
 }
