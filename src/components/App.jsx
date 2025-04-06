@@ -10,6 +10,7 @@ import Header from "./Header";
 function App() {
   const [characters, setCharacters] = useState([]);
   const [searchName, setSearchName] = useState("");
+  const [searchSpecie, setSearchSpecie] = useState("");
   useEffect(() => {
     //1. instructions:
     fetch("https://rickandmortyapi.com/api/character")
@@ -24,7 +25,7 @@ function App() {
             species: character.species,
             origin: character.origin,
             status: character.status,
-            // episode: character.episode,
+            episodes: character.episode.length,
           };
         });
         //console.log(usersData);
@@ -32,12 +33,18 @@ function App() {
       });
   }, []); // 2. Empty array -> to run once.
   //Function -> change on filter
-  const handleFilterChange = (searchName) => {
+  const handleFilterChangeName = (searchName) => {
     setSearchName(searchName);
+  };
+  const handleFilterChangeSpecie = (searchSpecie) => {
+    setSearchSpecie(searchSpecie);
   };
   //Filter -> characters by name
   const filteredCharacters = characters.filter((character) => {
-    return character.name.toLowerCase().includes(searchName.toLowerCase());
+    return (
+      character.species.toLowerCase().includes(searchSpecie.toLowerCase()) &&
+      character.name.toLowerCase().includes(searchName.toLowerCase())
+    );
   });
   return (
     <>
@@ -50,9 +57,15 @@ function App() {
               <>
                 <Filters
                   searchName={searchName}
-                  onFilterChange={handleFilterChange}
+                  onFilterChangeName={handleFilterChangeName}
+                  searchSpecie={searchSpecie}
+                  onFilterChangeSpecie={handleFilterChangeSpecie}
                 />
-                <CharacterList characters={filteredCharacters} />
+                <CharacterList
+                  characters={filteredCharacters}
+                  searchName={searchName}
+                  searchSpecie={searchSpecie}
+                />
               </>
             }
           />

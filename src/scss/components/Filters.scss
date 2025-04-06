@@ -4,15 +4,26 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-
-
 }
 
-.form-input {
+
+
+.form-input-name {
     background-color: black;
     color: white;
     border: 2px solid rgb(42, 165, 173);
     padding: 5px;
     width: 250px;
+}
 
+
+
+
+.form-input-specie {
+    background-color: black;
+    color: white;
+    border: 2px solid rgb(42, 165, 173);
+    padding: 5px;
+    width: 250px;
+    margin-top: 20px;
 }

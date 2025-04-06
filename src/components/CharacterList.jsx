@@ -1,23 +1,24 @@
-import CharacterDetail from "./CharacterDetail";
 import "../scss/components/CharacterList.scss";
-import { Link } from "react-router-dom";
 import CharacterCard from "./CharacterCard";
 import PropTypes from "prop-types";
 
-function CharacterList({ characters }) {
+function CharacterList({ characters, searchName }) {
   const renderCharacters = () => {
     if (!characters || characters.length === 0) {
-      return <p>No hay ningún personaje que conincida.</p>;
+      return (
+        <p>
+          No hay ningún personaje que conincida con la palabra "
+          <strong>{searchName}</strong>".
+        </p>
+      );
     }
-    return null;
+    return characters.map((character) => {
+      return <CharacterCard key={character.id} character={character} />;
+    });
   };
   return (
     <section className="character-list-container">
-      <ul className="character-list">
-        {characters.map((character) => {
-          return <CharacterCard key={character.id} character={character} />;
-        })}
-      </ul>
+      <ul className="character-list">{renderCharacters()}</ul>
     </section>
   );
 }
