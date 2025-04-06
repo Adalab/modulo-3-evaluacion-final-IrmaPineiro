@@ -2,13 +2,14 @@ import "../scss/components/CharacterList.scss";
 import CharacterCard from "./CharacterCard";
 import PropTypes from "prop-types";
 
-function CharacterList({ characters, searchName }) {
+function CharacterList({ characters, searchName, searchSpecie }) {
   const renderCharacters = () => {
     if (!characters || characters.length === 0) {
       return (
         <p>
           No hay ningún personaje que conincida con la palabra "
-          <strong>{searchName}</strong>".
+          <strong>{searchName} </strong>
+          <strong>{searchSpecie} </strong>".
         </p>
       );
     }
