@@ -9,7 +9,7 @@ function CharacterList({ characters }) {
         {characters.map((character) => {
           return (
             <li className="characters" key={character.id}>
-              <Link to={"/detail/${character.id}"}>
+              <Link to={`/detail/${character.id}`}>
                 <img src={character.image} alt={character.name} />
                 <h3>{character.name}</h3>
                 <p>{character.species}</p>

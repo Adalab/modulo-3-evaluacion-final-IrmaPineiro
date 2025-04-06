@@ -21,6 +21,8 @@ function App() {
             name: character.name,
             image: character.image,
             species: character.species,
+            origin: character.origin,
+            status: character.status,
           };
         });
         //console.log(usersData);
@@ -47,10 +49,7 @@ function App() {
             path="/"
             element={<CharacterList characters={filteredCharacters} />}
           />
-          <Route
-            path="/characters"
-            element={<CharacterList characters={filteredCharacters} />}
-          />
+
           <Route
             path="/detail/:id"
             element={<CharacterDetail characters={characters} />}
