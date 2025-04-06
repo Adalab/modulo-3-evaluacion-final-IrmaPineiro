@@ -21,16 +21,17 @@ function CharacterDetail({ characters }) {
           <section className="character-detail-info">
             <h2>{character.name}</h2>
             <p>
-              <strong>Species:</strong> {character.species}
+              <strong>Especie:</strong> {character.species}{" "}
+              {character.species === "Human" ? "🧍‍♂️" : "👽"}
             </p>
             <p>
-              <strong>Origin:</strong> {character.origin.name}
+              <strong>Origen:</strong> {character.origin.name}
             </p>
             <p>
-              <strong>Status:</strong> {character.status}
+              <strong>Estado:</strong> {character.status}
             </p>
             <p>
-              <strong>Episodes:</strong> {character.episodes}
+              <strong>Episodios:</strong> {character.episodes}
             </p>
           </section>
         </section>
