@@ -6,6 +6,7 @@ import CharacterList from "./CharacterList";
 import Filters from "./Filters";
 import CharacterDetail from "./CharacterDetail";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -75,6 +76,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

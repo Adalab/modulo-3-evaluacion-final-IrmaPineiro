@@ -1,13 +1,13 @@
-import logoRickMorty from "../images/logoRickMorty.png";
-
+import logoRickMorty from "../images/logoRickMorty-original.png";
+import "../scss/components/Footer.scss";
 import React from "react";
 
 function Footer() {
   return (
     <div>
-      <footer className="header">
+      <footer className="footer">
         <img
-          className="header-logo"
+          className="footer-logo"
           src={logoRickMorty}
           alt="Rick and Morty logo"
         />

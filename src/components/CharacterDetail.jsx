@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function CharacterDetail({ characters }) {
   const { id } = useParams();
