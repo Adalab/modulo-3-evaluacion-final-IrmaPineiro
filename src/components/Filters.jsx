@@ -5,10 +5,17 @@ import PropTypes from "prop-types";
 import CharacterList from "./CharacterList";
 
 function Filters({ searchName, onFilterChange }) {
-  const handleChangeInputName = (ev) => {
+  const handleChangeInputName = (event) => {
     //console.log(ev.target.value);
-    localStorageServices.set("searchName", ev.target.value);
-    onFilterChange(ev.target.value);
+    localStorageServices.set("searchName", event.target.value);
+    onFilterChange(event.target.value);
+  };
+
+  const hanldeChangeInputEnter = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      //console.log("Enter presionado");
+    }
   };
 
   //no olvidar -> Filters.propTypes = {
@@ -18,6 +25,7 @@ function Filters({ searchName, onFilterChange }) {
         type="text"
         placeholder="Buscar por nombre"
         onChange={handleChangeInputName}
+        onKeyDown={hanldeChangeInputEnter}
         value={searchName}
       />
     </form>

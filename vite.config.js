@@ -8,6 +8,6 @@ export default defineConfig({
     watch: { usePolling: true },
     open: true, // Abre automáticamente el navegador
   },
-  base: "/nombre-repo/",
+  base: "/Adalab/modulo-3-evaluacion-final-IrmaPineiro/",
 
 })

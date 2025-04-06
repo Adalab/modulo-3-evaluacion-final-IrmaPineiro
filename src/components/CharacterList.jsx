@@ -3,6 +3,12 @@ import "../scss/components/CharacterList.scss";
 import { Link } from "react-router-dom";
 
 function CharacterList({ characters }) {
+  const renderCharacters = () => {
+    if (!characters || characters.length === 0) {
+      return <p>No hay ningún personaje que conincida.</p>;
+    }
+    return null;
+  };
   return (
     <section>
       <ul className="character-list">
