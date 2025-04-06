@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import CharacterList from "./CharacterList";
 import Filters from "./Filters";
 import CharacterDetail from "./CharacterDetail";
+import Header from "./Header";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -23,6 +24,7 @@ function App() {
             species: character.species,
             origin: character.origin,
             status: character.status,
+            // episode: character.episode,
           };
         });
         //console.log(usersData);
@@ -39,17 +41,21 @@ function App() {
   });
   return (
     <>
-      <header>
-        <h1>Rick and Morty</h1>
-      </header>
+      <Header />
       <main>
-        <Filters searchName={searchName} onFilterChange={handleFilterChange} />
         <Routes>
           <Route
             path="/"
-            element={<CharacterList characters={filteredCharacters} />}
+            element={
+              <>
+                <Filters
+                  searchName={searchName}
+                  onFilterChange={handleFilterChange}
+                />
+                <CharacterList characters={filteredCharacters} />
+              </>
+            }
           />
-
           <Route
             path="/detail/:id"
             element={<CharacterDetail characters={characters} />}

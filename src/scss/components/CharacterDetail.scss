@@ -1,0 +1,59 @@
+@use "../core/Variables.scss" as vars;
+
+.character-detail-container {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    padding-bottom: 100px;
+    width: 100%
+}
+
+.character-detail {
+    background-color: vars.$main-color;
+    color: white;
+    display: flex;
+    width: 70%;
+    padding: 30px;
+    border-radius: 15px;
+
+    h2 {
+        padding-left: 20px;
+    }
+
+    p {
+        padding-left: 20px;
+    }
+
+
+}
+
+.character-detail-info {
+    background-color: vars.$main-color;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.link-back {
+    background-color: rgba(43, 104, 155, 0.527);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.link-back:hover {
+    background-color: rgba(66, 165, 245, 0.5);
+    color: black;
+    text-decoration: underline;
+    padding: 10px;
+    border-radius: 5px;
+}

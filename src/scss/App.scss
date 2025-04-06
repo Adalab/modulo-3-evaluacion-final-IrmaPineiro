@@ -1,1 +1,7 @@
-@use 'core/reset';
+@use 'core/Reset.scss';
+@use 'core/Variables.scss';
+@use 'components/Header.scss';
+@use 'components/Filters.scss';
+@use 'components/CharacterList.scss';
+@use 'components/CharacterCard.scss';
+@use 'components/CharacterDetail.scss';

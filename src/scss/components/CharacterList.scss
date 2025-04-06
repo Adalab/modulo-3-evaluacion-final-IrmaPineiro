@@ -1,17 +1,21 @@
-.character-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 20px;
+.character-list-container {
+    background-color: black;
+    padding: 40px;
+
 }
 
-.characters {
-    background-color: aquamarine;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+
+.character-list {
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
 
 }

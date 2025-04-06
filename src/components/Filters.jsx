@@ -3,6 +3,7 @@ import localStorageServices from "../services/localStorage";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import CharacterList from "./CharacterList";
+import "../scss/components/Filters.scss";
 
 function Filters({ searchName, onFilterChange }) {
   const handleChangeInputName = (event) => {
@@ -20,8 +21,9 @@ function Filters({ searchName, onFilterChange }) {
 
   //no olvidar -> Filters.propTypes = {
   return (
-    <form action="">
+    <form className="form" action="">
       <input
+        className="form-input"
         type="text"
         placeholder="Buscar por nombre"
         onChange={handleChangeInputName}

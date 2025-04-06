@@ -1,6 +1,8 @@
 import CharacterDetail from "./CharacterDetail";
 import "../scss/components/CharacterList.scss";
 import { Link } from "react-router-dom";
+import CharacterCard from "./CharacterCard";
+import PropTypes from "prop-types";
 
 function CharacterList({ characters }) {
   const renderCharacters = () => {
@@ -10,18 +12,10 @@ function CharacterList({ characters }) {
     return null;
   };
   return (
-    <section>
+    <section className="character-list-container">
       <ul className="character-list">
         {characters.map((character) => {
-          return (
-            <li className="characters" key={character.id}>
-              <Link to={`/detail/${character.id}`}>
-                <img src={character.image} alt={character.name} />
-                <h3>{character.name}</h3>
-                <p>{character.species}</p>
-              </Link>
-            </li>
-          );
+          return <CharacterCard key={character.id} character={character} />;
         })}
       </ul>
     </section>

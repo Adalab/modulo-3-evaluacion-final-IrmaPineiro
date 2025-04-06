@@ -1,0 +1,27 @@
+@use "../core/Variables.scss" as vars;
+
+.character-card {
+    background-color: vars.$main-color;
+    color: white;
+    text-align: left;
+    padding-bottom: 5px;
+    width: 200px;
+
+    img {
+        max-width: fit-content;
+        height: auto;
+
+    }
+
+
+    h3 {
+        padding-top: 7px;
+        padding-left: 7px;
+    }
+
+    p {
+        padding: 7px;
+
+    }
+
+}
