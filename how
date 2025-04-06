@@ -1,0 +1,178 @@
+[33mcommit fc62215dd769754a8a5e47ca00a8027d71bbce5a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnueva-rama-desde-scss[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mdev[m[33m)[m
+Author: Irmitate <irmitate@gmail.com>
+Date:   Sun Apr 6 16:07:10 2025 +0100
+
+    aplying scss
+
+[1mdiff --git a/src/components/App.jsx b/src/components/App.jsx[m
+[1mindex e155844..0d5b3a7 100644[m
+[1m--- a/src/components/App.jsx[m
+[1m+++ b/src/components/App.jsx[m
+[36m@@ -5,6 +5,7 @@[m [mimport { useState, useEffect } from "react";[m
+ import CharacterList from "./CharacterList";[m
+ import Filters from "./Filters";[m
+ import CharacterDetail from "./CharacterDetail";[m
+[32m+[m[32mimport Header from "./Header";[m
+ [m
+ function App() {[m
+   const [characters, setCharacters] = useState([]);[m
+[36m@@ -23,6 +24,7 @@[m [mfunction App() {[m
+             species: character.species,[m
+             origin: character.origin,[m
+             status: character.status,[m
+[32m+[m[32m            // episode: character.episode,[m
+           };[m
+         });[m
+         //console.log(usersData);[m
+[36m@@ -39,17 +41,21 @@[m [mfunction App() {[m
+   });[m
+   return ([m
+     <>[m
+[31m-      <header>[m
+[31m-        <h1>Rick and Morty</h1>[m
+[31m-      </header>[m
+[32m+[m[32m      <Header />[m
+       <main>[m
+[31m-        <Filters searchName={searchName} onFilterChange={handleFilterChange} />[m
+         <Routes>[m
+           <Route[m
+             path="/"[m
+[31m-            element={<CharacterList characters={filteredCharacters} />}[m
+[32m+[m[32m            element={[m
+[32m+[m[32m              <>[m
+[32m+[m[32m                <Filters[m
+[32m+[m[32m                  searchName={searchName}[m
+[32m+[m[32m                  onFilterChange={handleFilterChange}[m
+[32m+[m[32m                />[m
+[32m+[m[32m                <CharacterList characters={filteredCharacters} />[m
+[32m+[m[32m              </>[m
+[32m+[m[32m            }[m
+           />[m
+[31m-[m
+           <Route[m
+             path="/detail/:id"[m
+             element={<CharacterDetail characters={characters} />}[m
+[1mdiff --git a/src/components/CharacterCard.jsx b/src/components/CharacterCard.jsx[m
+[1mindex e69de29..d99c33c 100644[m
+[1m--- a/src/components/CharacterCard.jsx[m
+[1m+++ b/src/components/CharacterCard.jsx[m
+[36m@@ -0,0 +1,27 @@[m
+[32m+[m[32mimport React from "react";[m[41m[m
+[32m+[m[32mimport PropTypes from "prop-types";[m[41m[m
+[32m+[m[32mimport "../scss/components/CharacterCard.scss";[m[41m[m
+[32m+[m[32mimport { Link } from "react-router-dom";[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction CharacterCard({ character }) {[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <li className="character-card">[m[41m[m
+[32m+[m[32m      <Link to={`/detail/${character.id}`}>[m[41m[m
+[32m+[m[32m        <img src={character.image} alt={character.name} />[m[41m[m
+[32m+[m[32m        <h3>{character.name}</h3>[m[41m[m
+[32m+[m[32m        <p>{character.species}</p>[m[41m[m
+[32m+[m[32m      </Link>[m[41m[m
+[32m+[m[32m    </li>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mCharacterCard.propTypes = {[m[41m[m
+[32m+[m[32m  character: PropTypes.shape({[m[41m[m
+[32m+[m[32m    id: PropTypes.number.isRequired,[m[41m[m
+[32m+[m[32m    name: PropTypes.string.isRequired,[m[41m[m
+[32m+[m[32m    image: PropTypes.string.isRequired,[m[41m[m
+[32m+[m[32m    species: PropTypes.string.isRequired,[m[41m[m
+[32m+[m[32m  }).isRequired,[m[41m[m
+[32m+[m[32m};[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport default CharacterCard;[m[41m[m
+[1mdiff --git a/src/components/CharacterDetail.jsx b/src/components/CharacterDetail.jsx[m
+[1mindex 387f1e1..1ef6466 100644[m
+[1m--- a/src/components/CharacterDetail.jsx[m
+[1m+++ b/src/components/CharacterDetail.jsx[m
+[36m@@ -1,6 +1,5 @@[m
+ import React from "react";[m
+ import { useParams } from "react-router-dom";[m
+[31m-import "../scss/components/CharacterDetail.scss";[m
+ import { Link } from "react-router-dom";[m
+ [m
+ function CharacterDetail({ characters }) {[m
+[36m@@ -17,14 +16,23 @@[m [mfunction CharacterDetail({ characters }) {[m
+     return <p>Personaje no encontrado.</p>;[m
+   }[m
+   return ([m
+[31m-    <section className="character-detail">[m
+[31m-      <Link to="/">Volver a la lista</Link>[m
+[31m-      <img src={character.image} alt={character.name} />[m
+[31m-      <h2>{character.name}</h2>[m
+[31m-      <p>Especie: {character.species}</p>[m
+[31m-      <p>Origen: {character.origin.name}</p>[m
+[31m-      <p>Estado: {character.status}</p>[m
+[31m-    </section>[m
+[32m+[m[32m    <>[m[41m[m
+[32m+[m[32m      <section className="character-detail-container">[m[41m[m
+[32m+[m[32m        <Link className="link-back" to="/">[m[41m[m
+[32m+[m[32m          Volver atrás[m[41m[m
+[32m+[m[32m        </Link>[m[41m[m
+[32m+[m[32m        <section className="character-detail">[m[41m[m
+[32m+[m[32m          <img src={character.image} alt={character.name} />[m[41m[m
+[32m+[m[32m          <section className="character-detail-info">[m[41m[m
+[32m+[m[32m            <h2>{character.name}</h2>[m[41m[m
+[32m+[m[32m            <p>Especie: {character.species}</p>[m[41m[m
+[32m+[m[32m            <p>Origen: {character.origin.name}</p>[m[41m[m
+[32m+[m[32m            <p>Estado: {character.status}</p>[m[41m[m
+[32m+[m[32m            <p>Episodio: {character.episode}</p>[m[41m[m
+[32m+[m[32m          </section>[m[41m[m
+[32m+[m[32m        </section>[m[41m[m
+[32m+[m[32m      </section>[m[41m[m
+[32m+[m[32m    </>[m[41m[m
+   );[m
+ }[m
+ [m
+[1mdiff --git a/src/components/CharacterList.jsx b/src/components/CharacterList.jsx[m
+[1mindex e655477..b9b3e01 100644[m
+[1m--- a/src/components/CharacterList.jsx[m
+[1m+++ b/src/components/CharacterList.jsx[m
+[36m@@ -1,6 +1,8 @@[m
+ import CharacterDetail from "./CharacterDetail";[m
+ import "../scss/components/CharacterList.scss";[m
+ import { Link } from "react-router-dom";[m
+[32m+[m[32mimport CharacterCard from "./CharacterCard";[m[41m[m
+[32m+[m[32mimport PropTypes from "prop-types";[m[41m[m
+ [m
+ function CharacterList({ characters }) {[m
+   const renderCharacters = () => {[m
+[36m@@ -10,18 +12,10 @@[m [mfunction CharacterList({ characters }) {[m
+     return null;[m
+   };[m
+   return ([m
+[31m-    <section>[m
+[32m+[m[32m    <section className="character-list-container">[m[41m[m
+       <ul className="character-list">[m
+         {characters.map((character) => {[m
+[31m-          return ([m
+[31m-            <li className="characters" key={character.id}>[m
+[31m-              <Link to={`/detail/${character.id}`}>[m
+[31m-                <img src={character.image} alt={character.name} />[m
+[31m-                <h3>{character.name}</h3>[m
+[31m-                <p>{character.species}</p>[m
+[31m-              </Link>[m
+[31m-            </li>[m
+[31m-          );[m
+[32m+[m[32m          return <CharacterCard key={character.id} character={character} />;[m[41m[m
+         })}[m
+       </ul>[m
+     </section>[m
+[1mdiff --git a/src/components/Filters.jsx b/src/components/Filters.jsx[m
+[1mindex 1d06e36..b601731 100644[m
+[1m--- a/src/components/Filters.jsx[m
+[1m+++ b/src/components/Filters.jsx[m
+[36m@@ -3,6 +3,7 @@[m [mimport localStorageServices from "../services/localStorage";[m
+ import { useState } from "react";[m
+ import PropTypes from "prop-types";[m
+ import CharacterList from "./CharacterList";[m
+[32m+[m[32mimport "../scss/components/Filters.scss";[m[41m[m
+ [m
+ function Filters({ searchName, onFilterChange }) {[m
+   const handleChangeInputName = (event) => {[m
+[36m@@ -20,8 +21,9 @@[m [mfunction Filters({ searchName, onFilterChange }) {[m
+ [m
+   //no o
