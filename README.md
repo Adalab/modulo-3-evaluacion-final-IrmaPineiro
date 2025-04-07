@@ -64,7 +64,7 @@ Los estilos se implementaron usando **SCSS**, lo cual permite modularidad y un d
 
 ## Demo
 
-Puedes probar la aplicación publicada en GitHub Pages: [Rick and Morty Web App](https://usuario.github.io/repo-rick-and-morty)
+Puedes probar la aplicación publicada en GitHub Pages: [Rick and Morty Web App](https://beta.adalab.es/modulo-3-evaluacion-final-IrmaPineiro/)
 
 ## Recursos utilizados
 
